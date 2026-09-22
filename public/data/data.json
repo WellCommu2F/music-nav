@@ -1,0 +1,563 @@
+{
+  "nodes": [
+    {
+      "id": "notes-pitch",
+      "title": "音符与音高",
+      "goal": "认识音名、唱名、钢琴键盘布局，理解半音/全音与中央C",
+      "skills": [
+        "音名唱名",
+        "钢琴键盘",
+        "半音全音"
+      ],
+      "prereq": [],
+      "next": [
+        "rhythm"
+      ],
+      "routes": [
+        "theory",
+        "edm",
+        "pop"
+      ]
+    },
+    {
+      "id": "rhythm",
+      "title": "节奏",
+      "goal": "理解拍号、音符时值、休止符，能打拍子读常见节奏型",
+      "skills": [
+        "拍号",
+        "音符时值",
+        "打拍子"
+      ],
+      "prereq": [
+        "notes-pitch"
+      ],
+      "next": [
+        "scales"
+      ],
+      "routes": [
+        "theory",
+        "edm",
+        "pop"
+      ]
+    },
+    {
+      "id": "scales",
+      "title": "音阶与调",
+      "goal": "构建自然大调/小调音阶，理解调号与调性",
+      "skills": [
+        "大调音阶",
+        "小调音阶",
+        "调号"
+      ],
+      "prereq": [
+        "rhythm"
+      ],
+      "next": [
+        "intervals"
+      ],
+      "routes": [
+        "theory",
+        "edm",
+        "pop"
+      ]
+    },
+    {
+      "id": "intervals",
+      "title": "音程",
+      "goal": "识别与构唱常见音程（大小二三六七度、纯四五八度）",
+      "skills": [
+        "音程度数",
+        "协和/不协和"
+      ],
+      "prereq": [
+        "scales"
+      ],
+      "next": [
+        "chords"
+      ],
+      "routes": [
+        "theory"
+      ]
+    },
+    {
+      "id": "chords",
+      "title": "和弦",
+      "goal": "理解三和弦与七和弦的结构、大小增减性质及转位",
+      "skills": [
+        "三和弦",
+        "七和弦",
+        "转位"
+      ],
+      "prereq": [
+        "intervals"
+      ],
+      "next": [
+        "chord-progressions"
+      ],
+      "routes": [
+        "theory",
+        "arrangement",
+        "pop",
+        "edm"
+      ]
+    },
+    {
+      "id": "chord-progressions",
+      "title": "和弦进行",
+      "goal": "掌握级数标记法与常用进行（I-V-vi-IV 等），能为旋律配和弦",
+      "skills": [
+        "级数标记",
+        "功能和声",
+        "常用进行"
+      ],
+      "prereq": [
+        "chords"
+      ],
+      "next": [
+        "first-beat"
+      ],
+      "routes": [
+        "theory",
+        "arrangement",
+        "pop",
+        "edm"
+      ]
+    },
+    {
+      "id": "fl-basics",
+      "title": "FL Studio 界面与工程",
+      "goal": "认识 Channel Rack / Playlist / Mixer / Browser，能新建工程并保存",
+      "skills": [
+        "界面布局",
+        "工程管理",
+        "采样器通道"
+      ],
+      "prereq": [],
+      "next": [
+        "fl-pianoroll"
+      ],
+      "routes": [
+        "daw",
+        "edm",
+        "pop"
+      ]
+    },
+    {
+      "id": "fl-pianoroll",
+      "title": "Piano Roll 写音符",
+      "goal": "在 Piano Roll 中输入/编辑音符，掌握量化、力度、吸附",
+      "skills": [
+        "音符输入",
+        "量化",
+        "力度",
+        "吸附"
+      ],
+      "prereq": [
+        "fl-basics"
+      ],
+      "next": [
+        "fl-channelrack"
+      ],
+      "routes": [
+        "daw",
+        "edm",
+        "pop"
+      ]
+    },
+    {
+      "id": "fl-channelrack",
+      "title": "Channel Rack 做鼓",
+      "goal": "用 Step Sequencer 写鼓型，理解 pattern 思维",
+      "skills": [
+        "Step Sequencer",
+        "鼓型编写"
+      ],
+      "prereq": [
+        "fl-pianoroll"
+      ],
+      "next": [
+        "fl-playlist"
+      ],
+      "routes": [
+        "daw",
+        "edm",
+        "pop"
+      ]
+    },
+    {
+      "id": "fl-playlist",
+      "title": "Playlist 编排",
+      "goal": "用 pattern 在 Playlist 中排列出歌曲结构，使用 automation clip",
+      "skills": [
+        "音频/自动化剪辑",
+        "歌曲结构"
+      ],
+      "prereq": [
+        "fl-channelrack"
+      ],
+      "next": [
+        "fl-mixer"
+      ],
+      "routes": [
+        "daw",
+        "edm"
+      ]
+    },
+    {
+      "id": "fl-mixer",
+      "title": "混音台与自动化",
+      "goal": "理解通道路由、效果器链、电平与声像基础",
+      "skills": [
+        "路由",
+        "效果器链",
+        "电平声像"
+      ],
+      "prereq": [
+        "fl-playlist"
+      ],
+      "next": [
+        "first-beat"
+      ],
+      "routes": [
+        "daw"
+      ]
+    },
+    {
+      "id": "ear",
+      "title": "听力训练",
+      "goal": "建立相对音高：模唱、音程与和弦听辨——每天 10 分钟，不占用主学习时段",
+      "skills": [
+        "模唱",
+        "音程听辨",
+        "和弦听辨"
+      ],
+      "prereq": [],
+      "next": [],
+      "routes": [
+        "ear"
+      ],
+      "daily": true
+    },
+    {
+      "id": "first-beat",
+      "title": "【项目】第一个 Beat",
+      "goal": "完成 8~16 小节作品：鼓组 + Bassline + 和弦进行",
+      "skills": [
+        "鼓组",
+        "Bassline",
+        "和弦"
+      ],
+      "prereq": [
+        "chord-progressions",
+        "fl-mixer"
+      ],
+      "next": [
+        "arrangement"
+      ],
+      "routes": [
+        "project",
+        "edm",
+        "pop"
+      ],
+      "type": "project"
+    },
+    {
+      "id": "arrangement",
+      "title": "编曲与曲式结构",
+      "goal": "掌握 Intro/Verse/Chorus/Drop 等结构与配器层次",
+      "skills": [
+        "曲式结构",
+        "配器",
+        "声部编排"
+      ],
+      "prereq": [
+        "first-beat"
+      ],
+      "next": [
+        "sound-design"
+      ],
+      "routes": [
+        "edm",
+        "pop"
+      ]
+    },
+    {
+      "id": "sound-design",
+      "title": "声音设计与合成",
+      "goal": "理解合成器基础（振荡器/滤波器/包络），能捏 EDM 常用音色",
+      "skills": [
+        "减法合成",
+        "滤波器",
+        "包络"
+      ],
+      "prereq": [
+        "arrangement"
+      ],
+      "next": [
+        "mixing"
+      ],
+      "routes": [
+        "edm"
+      ]
+    },
+    {
+      "id": "mixing",
+      "title": "混音",
+      "goal": "平衡、EQ、压缩、空间效果，让各声部清晰共存",
+      "skills": [
+        "EQ",
+        "压缩",
+        "混响"
+      ],
+      "prereq": [
+        "sound-design"
+      ],
+      "next": [
+        "final-track"
+      ],
+      "routes": [
+        "edm",
+        "pop"
+      ]
+    },
+    {
+      "id": "final-track",
+      "title": "【毕业项目】一首完整 EDM 作品",
+      "goal": "从空工程到导出成曲，走完制作全流程",
+      "skills": [
+        "全流程"
+      ],
+      "prereq": [
+        "mixing"
+      ],
+      "next": [],
+      "routes": [
+        "project",
+        "edm"
+      ],
+      "type": "project"
+    },
+    {
+      "id": "mastering",
+      "title": "母带入门",
+      "goal": "理解母带基本流程与响度概念",
+      "skills": [
+        "母带",
+        "响度"
+      ],
+      "prereq": [
+        "mixing"
+      ],
+      "next": [],
+      "routes": [
+        "later"
+      ],
+      "type": "later"
+    },
+    {
+      "id": "vocal-processing",
+      "title": "人声处理 / Vocaloid",
+      "goal": "Vocaloid 引擎使用与混音中 Vocal 的处理（Later）",
+      "skills": [
+        "Vocaloid",
+        "人声混音"
+      ],
+      "prereq": [
+        "mixing"
+      ],
+      "next": [],
+      "routes": [
+        "later"
+      ],
+      "type": "later"
+    }
+  ],
+  "resources": [
+    {
+      "id": "r-lmt-cn",
+      "name": "自由派音乐理论（中文版）",
+      "url": "https://music-theory.aizcutei.com",
+      "type": "article",
+      "author": "SoundQuest 著 / Aizcutei 译",
+      "lang": "zh",
+      "price": "free",
+      "level": "beginner",
+      "nodes": [
+        "notes-pitch",
+        "rhythm",
+        "scales",
+        "intervals",
+        "chords",
+        "chord-progressions"
+      ],
+      "role": "primary",
+      "duration_h": 40,
+      "why": "用户已在使用的乐理主教材：文章+音频样本，从准备篇到和弦篇覆盖乐理线全部节点；按章节自由攻克，可 binge 可碎片",
+      "verified_at": "2026-09-22",
+      "note": "日站 SoundQuest 的民间中译，备线路 sq.aizcutei.com；深度偏爵士体系，准备篇适合零基础起步"
+    },
+    {
+      "id": "r-sfyss-theory",
+      "name": "三分钟音乐社《零基础自学音乐学乐理》合集（第二季/最终版）",
+      "url": "https://www.bilibili.com/video/BV14p4y1e7TV",
+      "type": "video",
+      "author": "三分钟音乐社（西蒙，四川音乐学院作曲硕士）",
+      "lang": "zh",
+      "price": "free",
+      "level": "beginner",
+      "nodes": [
+        "notes-pitch",
+        "rhythm",
+        "scales",
+        "intervals",
+        "chords",
+        "chord-progressions"
+      ],
+      "role": "alternative",
+      "duration_h": 35,
+      "why": "视频课讲法，适合看文章费劲时换思路；同样免费中文可拆分",
+      "verified_at": "2026-09-22",
+      "note": "经搜索引擎核实页面及完整剧集列表；直接抓取被反爬拦截"
+    },
+    {
+      "id": "r-nicechord",
+      "name": "好和弦 NiceChord（网站文章库 + 视频）",
+      "url": "https://nicechord.com/post/welcome-to-nicechord/",
+      "type": "article",
+      "author": "官大为 Wiwi Kuan",
+      "lang": "zh",
+      "price": "free",
+      "level": "beginner",
+      "nodes": [
+        "chords",
+        "chord-progressions",
+        "mixing",
+        "sound-design"
+      ],
+      "role": "alternative",
+      "duration_h": null,
+      "why": "繁体中文免费乐理/编曲文章，讲法与三分钟音乐社不同，适合换思路；含配和弦幼幼班、混音幼幼班",
+      "verified_at": "2026-09-22",
+      "note": "繁体中文；已打开官网验证"
+    },
+    {
+      "id": "r-sfyss-ear",
+      "name": "三分钟音乐社《视唱练耳》系列（B站）",
+      "url": "https://space.bilibili.com/7762500/",
+      "type": "video",
+      "author": "三分钟音乐社",
+      "lang": "zh",
+      "price": "free",
+      "level": "beginner",
+      "nodes": [
+        "ear"
+      ],
+      "role": "primary",
+      "duration_h": null,
+      "why": "中文免费、与乐理课同一体系，从零起步难度合适，作为耳朵线每日练习的主入口（用户实测 MoonBox 练习难度偏高，留作后期保持手感）",
+      "verified_at": "2026-09-22",
+      "note": "频道空间页；系列持续更新"
+    },
+    {
+      "id": "r-musictheory-net",
+      "name": "musictheory.net Exercises",
+      "url": "https://www.musictheory.net/exercises",
+      "type": "tool",
+      "author": "Ricci Adams",
+      "lang": "en",
+      "price": "free",
+      "level": "beginner",
+      "nodes": [
+        "ear",
+        "intervals",
+        "chords"
+      ],
+      "role": "alternative",
+      "duration_h": null,
+      "why": "浏览器端免费交互练习（音程/和弦听辨、键盘识别），点击式无需弹奏",
+      "verified_at": "2026-09-22",
+      "note": "已打开验证，页面明示 exercises 免费"
+    },
+    {
+      "id": "r-fl-gettingstarted",
+      "name": "FL Studio Getting Started Manual（官方 PDF）",
+      "url": "https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/boxinstaller/WebContent/FLStudio20_GettingStartedManual.pdf",
+      "type": "docs",
+      "author": "Image-Line",
+      "lang": "en",
+      "price": "free",
+      "level": "beginner",
+      "nodes": [
+        "fl-basics",
+        "fl-pianoroll",
+        "fl-channelrack",
+        "fl-playlist",
+        "fl-mixer"
+      ],
+      "role": "primary",
+      "duration_h": 4,
+      "why": "官方入门手册，按 Channel Rack→Piano Roll→Playlist→Mixer 的顺序组织，覆盖 DAW 线全部节点",
+      "verified_at": "2026-09-22",
+      "note": "英文；中文界面可对照学习"
+    },
+    {
+      "id": "r-fl-manual",
+      "name": "FL Studio Online Manual（官方在线手册）",
+      "url": "https://image-line.com/fl-studio-learning/fl-studio-online-manual/",
+      "type": "docs",
+      "author": "Image-Line",
+      "lang": "en",
+      "price": "free",
+      "level": "beginner",
+      "nodes": [
+        "fl-basics",
+        "fl-pianoroll",
+        "fl-channelrack",
+        "fl-playlist",
+        "fl-mixer"
+      ],
+      "role": "reference",
+      "duration_h": null,
+      "why": "F1 同款官方文档，查具体功能时比视频快",
+      "verified_at": "2026-09-22",
+      "note": "已打开验证"
+    },
+    {
+      "id": "r-flstudiochina",
+      "name": "FL Studio 中文官网教程频道",
+      "url": "https://www.flstudiochina.com/curriculum/",
+      "type": "video",
+      "author": "FL Studio 中文官网",
+      "lang": "zh",
+      "price": "free",
+      "level": "beginner",
+      "nodes": [
+        "fl-basics"
+      ],
+      "role": "alternative",
+      "duration_h": null,
+      "why": "中文界面术语对照，适合不想啃英文手册时用",
+      "verified_at": "2026-09-22",
+      "note": "经搜索核实；含三分钟音乐社乐理等合作课程"
+    },
+    {
+      "id": "r-moonbox",
+      "name": "月盒 MoonBox（交互式乐理学习站/APP）",
+      "url": "https://two-moons.site",
+      "type": "tool",
+      "author": "moayuisuda",
+      "lang": "zh",
+      "price": "free",
+      "level": "beginner",
+      "nodes": [
+        "ear",
+        "chords"
+      ],
+      "role": "later",
+      "duration_h": null,
+      "why": "交互式乐理站：练习模块难度偏高，建议耳朵线中后期用来保持手感；「和弦探索」任何时候都可当和弦练习/查询工具",
+      "verified_at": "2026-09-22",
+      "note": "网页版免费，有 APK；四模块：教程/练习/和弦探索/市场。 Later 定位：练耳中后期保持手感；和弦探索可作 chords 节点工具。站方自述进阶接自由派音乐理论、编曲接 DTMwiki"
+    }
+  ]
+}
