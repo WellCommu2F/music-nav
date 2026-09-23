@@ -1,11 +1,12 @@
 <script setup>
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import ResourceCard from '../components/ResourceCard.vue'
 import {
   getNode,
   resourcesForNode,
-  primaryResource
+  primaryResource,
+  prevNodeOf
 } from '../store/data.js'
 import {
   getNodeStatus,
@@ -15,8 +16,23 @@ import {
 } from '../store/progress.js'
 
 const route = useRoute()
+const router = useRouter()
 const nodeId = computed(() => route.params.id)
 const node = computed(() => getNode(nodeId.value))
+
+// 上一站：按该节点所在路线的顺序取前一个节点（多路线时取主线序）。
+// 首页首个节点（无前驱）时返回 null，不显示返回导航。
+const prevNode = computed(() =>
+  node.value ? prevNodeOf(node.value.id) : null
+)
+
+function goBack() {
+  if (window.history.length > 1) {
+    router.back()
+  } else {
+    router.push('/')
+  }
+}
 
 const status = computed(() => getNodeStatus(nodeId.value))
 
@@ -69,6 +85,19 @@ function markDone() {
   </div>
 
   <div v-else>
+    <!-- 顶部导航：浏览器式返回 + 上一站 -->
+    <div class="node-nav">
+      <button class="btn small" @click="goBack">← 返回</button>
+      <router-link
+        v-if="prevNode"
+        :to="'/node/' + prevNode.id"
+        class="prev-link"
+      >
+        上一站：{{ prevNode.title }}
+      </router-link>
+      <span v-else class="faint">这是本线的起点</span>
+    </div>
+
     <div class="card">
       <h1>{{ node.title }}</h1>
 

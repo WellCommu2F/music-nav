@@ -67,6 +67,62 @@ function setStatus(prefix, bucket, id, status) {
   localStorage.setItem(prefix + id, status)
 }
 
+// 只把 state 里真正变化过的 key 同步回来，避免无谓的触发
+function syncFromStorage() {
+  const nextNodes = loadMap(NODE_PREFIX)
+  const nextRes = loadMap(RES_PREFIX)
+  const nextDaily = loadMap(DAILY_PREFIX)
+
+  syncBucket(state.nodes, nextNodes)
+  syncBucket(state.resources, nextRes)
+  syncBucket(state.daily, nextDaily)
+
+  const ur = loadJSONList(USER_RES_KEY)
+  const hr = loadJSONList(HIDDEN_RES_KEY)
+  syncArray(state.userResources, ur)
+  syncArray(state.hiddenResources, hr)
+}
+
+function syncBucket(bucket, next) {
+  Object.keys(bucket).forEach((k) => {
+    if (!(k in next)) delete bucket[k]
+  })
+  Object.keys(next).forEach((k) => {
+    if (bucket[k] !== next[k]) bucket[k] = next[k]
+  })
+}
+
+function syncArray(arr, next) {
+  const same =
+    arr.length === next.length &&
+    arr.every((v, i) => JSON.stringify(v) === JSON.stringify(next[i]))
+  if (!same) arr.splice(0, arr.length, ...next)
+}
+
+// 跨标签页同步：其他标签页改动了 localStorage 时，本页状态立即跟上
+// 这样「在 A 标签页标 done，B 标签页首页立即推进」
+if (typeof window !== 'undefined' && window.addEventListener) {
+  window.addEventListener('storage', (e) => {
+    if (!e || !e.key) return
+    if (
+      e.key.startsWith(NODE_PREFIX) ||
+      e.key.startsWith(RES_PREFIX) ||
+      e.key.startsWith(DAILY_PREFIX) ||
+      e.key === USER_RES_KEY ||
+      e.key === HIDDEN_RES_KEY
+    ) {
+      syncFromStorage()
+    }
+  })
+}
+
+// 同一标签页内离开/回到页面时也重新对账（应对其他脚本或手动改动）
+if (typeof document !== 'undefined' && document.addEventListener) {
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) syncFromStorage()
+  })
+}
+
 export function getNodeStatus(id) {
   return state.nodes[id] || 'todo'
 }

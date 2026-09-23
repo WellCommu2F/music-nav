@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import {
   getNodeStatus,
   getUserResources,
@@ -120,9 +120,44 @@ function routeNodes(route) {
 }
 
 // 某条 route 的第一个非 done 节点
+// 依赖：data.value.nodes（节点表）+ state.nodes（进度）——两者都是响应式的，
+// 所以在 computed 中调用时会自动重算。
 function firstActiveNode(route) {
   const list = routeNodes(route)
   return list.find((n) => getNodeStatus(n.id) !== 'done') || null
+}
+
+// 供组件使用的响应式版本：三条线的当前节点。
+// 显式建立依赖，避免调用方遗漏 computed 包装。
+function useLaneActive() {
+  return computed(() => ({
+    theory: firstActiveNode('theory'),
+    daw: firstActiveNode('daw'),
+    skills: firstActiveNode('skills')
+  }))
+}
+
+// 某个节点在「主线序」中的前一个节点（用于节点页返回导航）
+// 多路线时取该节点所属路线的第一个（主线序），沿该路线序列取前驱。
+// 路线内已是首个节点（含首页起点节点）时返回 null —— 不回退到全局序，
+// 避免把与用户认知无关的节点当成「上一站」。
+const ROUTE_PRIORITY = ['theory', 'daw', 'skills', 'edm', 'pop', 'project', 'later']
+
+function mainRouteOf(node) {
+  const routes = node.routes || []
+  return ROUTE_PRIORITY.find((r) => routes.includes(r)) || routes[0] || null
+}
+
+function prevNodeOf(nodeId) {
+  const node = getNode(nodeId)
+  if (!node) return null
+
+  const route = mainRouteOf(node)
+  if (!route) return null
+
+  const list = routeNodes(route)
+  const i = list.findIndex((n) => n.id === nodeId)
+  return i > 0 ? list[i - 1] : null
 }
 
 export {
@@ -142,6 +177,8 @@ export {
   orderNodes,
   routeNodes,
   firstActiveNode,
+  useLaneActive,
+  prevNodeOf,
   dailyNodes
 }
 

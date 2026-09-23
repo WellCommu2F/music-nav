@@ -495,6 +495,20 @@ details .inner {
   background: var(--surface);
 }
 
+/* 节点页顶部导航 */
+.node-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 14px 0 0;
+}
+
+.node-nav .prev-link {
+  font-weight: 500;
+  font-size: 14px;
+}
+
 /* 自定义资源角标 */
 .badge.custom-badge {
   background: var(--brand-soft);

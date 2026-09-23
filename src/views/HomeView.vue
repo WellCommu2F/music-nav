@@ -6,7 +6,7 @@ import {
   primaryResource,
   orderNodes,
   routeNodes,
-  firstActiveNode,
+  useLaneActive,
   dailyNodes,
   nodes
 } from '../store/data.js'
@@ -24,8 +24,10 @@ const LANES = [
   { key: 'skills', label: '技能线' }
 ]
 
-function laneInfo(route) {
-  const activeNode = firstActiveNode(route)
+// 响应式的三条线当前节点（依赖节点进度，标记 done 后立即重算）
+const laneActive = useLaneActive()
+
+function laneInfo(route, activeNode) {
   if (!activeNode) return null
   const primary = primaryResource(activeNode.id)
   const nextId = (activeNode.next || [])[0]
@@ -34,7 +36,7 @@ function laneInfo(route) {
 }
 
 const laneData = computed(() =>
-  LANES.map((l) => ({ ...l, info: laneInfo(l.key) }))
+  LANES.map((l) => ({ ...l, info: laneInfo(l.key, laneActive.value[l.key]) }))
 )
 
 // 路线图：按 乐理/DAW/技能/汇合后 四组分组
