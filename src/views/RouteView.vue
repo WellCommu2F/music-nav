@@ -10,6 +10,7 @@ const props = defineProps({
 const ROUTE_LABELS = {
   theory: '乐理线',
   daw: 'DAW 线',
+  skills: '技能线',
   edm: 'EDM 路线',
   pop: '流行路线'
 }
@@ -17,7 +18,7 @@ const ROUTE_LABELS = {
 const label = computed(() => ROUTE_LABELS[props.id] || props.id)
 const list = computed(() => routeNodes(props.id))
 
-const routeTabs = ['edm', 'theory', 'daw', 'pop']
+const routeTabs = ['edm', 'theory', 'daw', 'skills', 'pop']
 </script>
 
 <template>

@@ -1,5 +1,9 @@
 import { ref } from 'vue'
-import { getNodeStatus } from './progress.js'
+import {
+  getNodeStatus,
+  getUserResources,
+  getHiddenResources
+} from './progress.js'
 
 const data = ref(null)
 const loading = ref(true)
@@ -18,12 +22,23 @@ async function loadData() {
   }
 }
 
+// 内置资源（data.json 原始数据，未过滤）
+function builtinResources() {
+  return data.value ? data.value.resources : []
+}
+
 function nodes() {
   return data.value ? data.value.nodes : []
 }
 
+// 全部资源 = 内置（剔除已隐藏）+ 自定义，自定义带 isCustom 标记
 function resources() {
-  return data.value ? data.value.resources : []
+  const hidden = getHiddenResources()
+  const builtin = builtinResources()
+    .filter((r) => !hidden.includes(r.id))
+    .map((r) => ({ ...r, isCustom: false }))
+  const custom = getUserResources().map((r) => ({ ...r, isCustom: true }))
+  return [...builtin, ...custom]
 }
 
 function getNode(id) {
@@ -117,6 +132,7 @@ export {
   loadData,
   nodes,
   resources,
+  builtinResources,
   getNode,
   getResource,
   resourcesForNode,
@@ -125,5 +141,11 @@ export {
   toolResources,
   orderNodes,
   routeNodes,
-  firstActiveNode
+  firstActiveNode,
+  dailyNodes
+}
+
+// 全部每日练习节点（daily: true），按全局依赖序
+function dailyNodes() {
+  return orderNodes(nodes().filter((n) => n.daily))
 }

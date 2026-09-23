@@ -10,14 +10,20 @@ import {
 import {
   getResourceStatus,
   setResourceStatus,
+  removeUserResource,
+  hideResource,
   STATUSES,
   STATUS_LABELS
 } from '../store/progress.js'
 
 const props = defineProps({
   resource: { type: Object, required: true },
-  role: { type: String, default: '' }
+  role: { type: String, default: '' },
+  // 是否在资源库（管理场景）显示删除/隐藏操作
+  manage: { type: Boolean, default: false }
 })
+
+const emit = defineEmits(['removed', 'hidden'])
 
 const status = computed(() => getResourceStatus(props.resource.id))
 
@@ -36,6 +42,20 @@ const metaTags = computed(() => {
 })
 
 const roleBadge = computed(() => (props.role ? ROLE_LABELS[props.role] : ''))
+
+function onRemove() {
+  if (window.confirm(`删除自定义资源「${props.resource.name}」？`)) {
+    removeUserResource(props.resource.id)
+    emit('removed', props.resource.id)
+  }
+}
+
+function onHide() {
+  if (window.confirm(`隐藏内置资源「${props.resource.name}」？可在「已隐藏」区恢复。`)) {
+    hideResource(props.resource.id)
+    emit('hidden', props.resource.id)
+  }
+}
 </script>
 
 <template>
@@ -43,8 +63,14 @@ const roleBadge = computed(() => (props.role ? ROLE_LABELS[props.role] : ''))
     <div class="res-head">
       <div>
         <span v-if="roleBadge" class="badge" :class="'role-' + role">{{ roleBadge }}</span>
+        <span v-if="resource.isCustom" class="badge custom-badge">自定义</span>
         <div class="res-name">{{ resource.name }}</div>
         <div class="res-author">{{ resource.author }}</div>
+      </div>
+
+      <div v-if="manage" class="res-actions">
+        <button v-if="resource.isCustom" class="btn small" @click="onRemove">删除</button>
+        <button v-else class="btn small" @click="onHide">隐藏</button>
       </div>
     </div>
 
@@ -53,6 +79,8 @@ const roleBadge = computed(() => (props.role ? ROLE_LABELS[props.role] : ''))
     </div>
 
     <div v-if="resource.why" class="res-why">{{ resource.why }}</div>
+
+    <div v-if="resource.note" class="faint" style="margin-top: 6px">{{ resource.note }}</div>
 
     <div class="res-foot">
       <span v-if="resource.duration_h" class="faint">
@@ -79,3 +107,4 @@ const roleBadge = computed(() => (props.role ? ROLE_LABELS[props.role] : ''))
     </div>
   </div>
 </template>
+

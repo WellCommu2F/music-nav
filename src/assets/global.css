@@ -412,10 +412,10 @@ details .inner {
   padding: 8px 16px 12px;
 }
 
-/* 两线并行 */
+/* 三线并行 */
 .lane-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -489,6 +489,83 @@ details .inner {
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+/* 自定义资源角标 */
+.badge.custom-badge {
+  background: var(--brand-soft);
+  color: var(--brand);
+}
+
+/* 资源卡片操作区 */
+.res-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+/* 管理表单 */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.form-grid .full {
+  grid-column: 1 / -1;
+}
+
+.form-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 14px;
+  color: var(--text);
+  font-family: inherit;
+  width: 100%;
+}
+
+.form-grid textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.node-check-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+}
+
+.node-check-list label {
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.node-check-list input {
+  width: auto;
+}
+
+.form-error {
+  color: #b91c1c;
+  font-size: 13px;
 }
 
 /* 交付物清单 */
